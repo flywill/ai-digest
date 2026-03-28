@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# AI Builders Digest - Manual Deployment Guide
+# This file contains instructions for manual deployment when automation fails
+
+echo "📋 AI Builders Digest - Manual Deployment Guide"
+echo "=============================================="
+echo ""
+
+echo "📁 Current setup:"
+echo "   - Project directory: ~/ai-digest-project"
+echo "   - GitHub repo: https://github.com/flywill/ai-digest"
+echo "   - Vercel project: ai-digest-psi.vercel.app"
+echo ""
+
+echo "🚀 Deployment Options:"
+echo ""
+echo "Option 1: Push to GitHub (Vercel auto-deploys)"
+echo "   1. Open Terminal"
+echo "   2. cd ~/ai-digest-project"
+echo "   3. git add -A"
+echo "   4. git commit -m 'Update digest'"
+echo "   5. git push origin main"
+echo "   6. Wait 30-60 seconds"
+echo "   7. Visit: https://ai-digest-psi.vercel.app"
+echo ""
+
+echo "Option 2: Use Vercel CLI"
+echo "   1. Install Vercel CLI:"
+echo "      npm i -g vercel"
+echo "   2. Login to Vercel:"
+echo "      vercel login"
+echo "   3. Deploy:"
+echo "      cd ~/ai-digest-project"
+echo "      vercel --prod"
+echo ""
+
+echo "Option 3: Drag & Drop to Vercel"
+echo "   1. Go to https://vercel.com/dashboard"
+echo "   2. Find your ai-digest-psi project"
+echo "   3. Click 'Deployments' tab"
+echo "   4. Drag the ~/ai-digest-project folder to deploy"
+echo ""
+
+echo "📝 Current Status:"
+if [ -f "~/ai-digest-project/index.html" ]; then
+    echo "   ✅ index.html exists and is ready"
+else
+    echo "   ❌ index.html not found"
+fi
+
+if [ -f "~/ai-digest-project/vercel.json" ]; then
+    echo "   ✅ vercel.json exists"
+else
+    echo "   ❌ vercel.json not found"
+fi
+
+echo ""
+echo "🔧 Troubleshooting:"
+echo "   - If Vercel doesn't auto-deploy, check Vercel dashboard > Project Settings > Git"
+echo "   - Make sure GitHub is connected to Vercel"
+echo "   - Check Vercel logs for deployment errors"
+echo ""
