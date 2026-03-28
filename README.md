@@ -86,9 +86,9 @@ bash monitor-deployment.sh
 
 ## 🌐 网站访问
 
-- **最新摘要**：https://ai-digest-psi.vercel.app
-- **历史归档**：https://ai-digest-psi.vercel.app/archives.html
-- **特定日期**：https://ai-digest-psi.vercel.app/archive/2026-03-28.html
+- **最新摘要**：https://ai-digest-tau.vercel.app
+- **历史归档**：https://ai-digest-tau.vercel.app/archives.html
+- **特定日期**：https://ai-digest-tau.vercel.app/archive/2026-03-28.html
 
 ## 📊 技术栈
 

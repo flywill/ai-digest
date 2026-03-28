@@ -13,7 +13,7 @@ echo "  分支: main"
 echo ""
 
 echo "🌐 Vercel 项目状态:"
-echo "  网站: https://ai-digest-psi.vercel.app"
+echo "  网站: https://ai-digest-tau.vercel.app"
 echo "  仪表盘: https://vercel.com/flywill/ai-digest"
 echo ""
 
@@ -28,7 +28,7 @@ echo "  方法 1: 访问 Vercel 仪表盘"
 echo "    https://vercel.com/flywill/ai-digest/deployments"
 echo ""
 echo "  方法 2: 检查网站是否更新"
-echo "    打开: https://ai-digest-psi.vercel.app"
+echo "    打开: https://ai-digest-tau.vercel.app"
 echo ""
 
 echo "✅ 部署成功的标志:"
@@ -45,7 +45,7 @@ echo ""
 
 echo "📱 移动设备测试:"
 echo "  在手机浏览器打开网站测试响应式设计"
-echo "  https://ai-digest-psi.vercel.app"
+echo "  https://ai-digest-tau.vercel.app"
 echo ""
 
 # 检查本地文件状态
