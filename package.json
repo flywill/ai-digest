@@ -1,0 +1,8 @@
+{
+  "name": "ai-digest",
+  "version": "1.0.0",
+  "description": "AI Builders Digest Website",
+  "scripts": {
+    "dev": "vercel dev"
+  }
+}
