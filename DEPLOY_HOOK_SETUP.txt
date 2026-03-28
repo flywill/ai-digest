@@ -1,0 +1,65 @@
+# AI Builders Digest - Vercel Deploy Hook Setup
+
+## 🚀 Quick Setup (Recommended)
+
+### Step 1: Create Vercel Deploy Hook
+1. Go to https://vercel.com/flywill/ai-digest/settings/git
+2. Scroll down to "Deploy Hooks" section
+3. Click "Create Hook"
+4. Name it: "auto-digest"
+5. Click "Create Hook"
+6. Copy the generated URL (it looks like: https://api.vercel.com/v1/integrations/deploy/...)
+
+### Step 2: Add Hook to Script
+Replace the `DEPLOY_HOOK_URL` in this script with your actual hook URL from Step 1.
+
+### Step 3: Automate Future Deployments
+The automation will now use this hook to trigger Vercel deployments.
+
+## 📋 Alternative Methods
+
+### Method 1: Manual Git Push (Once Git is set up)
+```bash
+cd ~/ai-digest-project
+git add -A
+git commit -m "Update digest"
+git push origin main
+```
+
+### Method 2: Vercel CLI
+```bash
+npm install -g vercel
+vercel login
+cd ~/ai-digest-project
+vercel --prod
+```
+
+### Method 3: Direct File Upload
+1. Go to https://vercel.com/flywill/ai-digest
+2. Click "Deployments" tab
+3. Drag the `~/ai-digest-project` folder
+
+## 🔧 Current Status
+
+✅ Files prepared and ready for deployment
+✅ Git repository initialized and committed
+⚠️  Waiting for:
+   - Git authentication (SSH or PAT)
+   - OR Vercel Deploy Hook URL
+
+## 🎯 Next Steps
+
+1. **Fastest**: Get the Deploy Hook URL from Vercel (see Step 1 above)
+2. **Permanent**: Set up Git authentication for long-term automation
+3. **Manual**: Use one of the alternative methods above
+
+## 📞 Need Help?
+
+- Vercel Deploy Hooks: https://vercel.com/docs/deploy-hooks
+- Git Authentication: https://docs.github.com/en/authentication
+- Vercel CLI: https://vercel.com/docs/cli
+
+---
+
+Generated: 2026-03-28
+Project: AI Builders Digest

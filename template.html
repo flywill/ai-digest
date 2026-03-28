@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Builders Digest - {DATE}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🦾 AI Builders Digest</h1>
+            <p class="subtitle">Daily insights from top AI builders</p>
+            <div class="date">📅 {DATE}</div>
+        </div>
+
+        <div class="date-navigation">
+            <div class="nav-container">
+                <div class="nav-title">📅 Historical Archives</div>
+                <div class="nav-links">
+                    {NAV_LINKS}
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="stats">
+                Today's updates: <strong>{BUILDERS_COUNT} builders</strong> • <strong>{TWEETS_COUNT} tweets</strong>
+            </div>
+
+            {CONTENT}
+
+        </div>
+
+        <div class="footer">
+            <p><a href="archives.html">📚 View All Archives</a></p>
+            <p>Generated through the Follow Builders skill</p>
+            <p><a href="https://github.com/zarazhangrui/follow-builders" target="_blank">github.com/zarazhangrui/follow-builders</a></p>
+            <p style="margin-top: 10px; font-size: 0.85em; opacity: 0.8;">Next digest: Tomorrow at 8:00 AM</p>
+        </div>
+    </div>
+</body>
+</html>
