@@ -1,151 +1,470 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Builders Digest - March 28, 2026</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Builders Digest — April 1, 2026</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --bg: #0f0f13;
+      --surface: #1a1a22;
+      --surface2: #22222e;
+      --accent: #7c6af7;
+      --accent2: #5bb3f0;
+      --text: #e8e8f0;
+      --text-muted: #8888aa;
+      --border: #2e2e40;
+      --green: #4ade80;
+      --orange: #fb923c;
+      --pink: #f472b6;
+      --yellow: #fbbf24;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 1.5rem 1.5rem;
+      text-align: center;
+    }
+    .header-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .header h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #a78bfa, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .header-meta {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .nav-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 1.5rem;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      overflow-x: auto;
+      font-size: 13px;
+    }
+    .nav-bar span { color: var(--text-muted); white-space: nowrap; }
+    .nav-bar a {
+      color: var(--accent2);
+      text-decoration: none;
+      white-space: nowrap;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      transition: all .2s;
+    }
+    .nav-bar a:hover { background: var(--accent2); color: white; border-color: var(--accent2); }
+    .nav-bar a.current { background: var(--accent); color: white; border-color: var(--accent); }
+    .container { max-width: 820px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 2rem 0 1rem;
+    }
+    .section-label .icon {
+      font-size: 1.4rem;
+    }
+    .section-label h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 1.2rem;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .card:hover { border-color: var(--accent); }
+    .card-header {
+      background: var(--surface2);
+      padding: 1rem 1.2rem 0.8rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .builder-info { flex: 1; min-width: 0; }
+    .builder-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .builder-role {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .source-link {
+      color: var(--accent2);
+      text-decoration: none;
+      font-size: 12px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      transition: all .2s;
+    }
+    .source-link:hover { background: var(--accent2); color: white; border-color: var(--accent2); }
+    .card-body { padding: 1rem 1.2rem 1.2rem; }
+    .en-block {
+      padding-bottom: 0.9rem;
+      border-bottom: 1px dashed var(--border);
+      margin-bottom: 0.9rem;
+    }
+    .zh-block { color: #c8c8e8; }
+    .lang-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-bottom: 6px;
+    }
+    .lang-en { background: rgba(124,106,247,.15); color: var(--accent); }
+    .lang-zh { background: rgba(91,179,240,.15); color: var(--accent2); }
+    .podcast-card .card-header { background: linear-gradient(135deg, rgba(124,106,247,.15), rgba(91,179,240,.1)); }
+    .podcast-avatar { background: linear-gradient(135deg, #7c6af7, #f472b6); }
+    .stats-bar {
+      display: flex;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+    .stat-hot { color: var(--orange); }
+    .footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-muted);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .footer a { color: var(--accent2); text-decoration: none; }
+    @media (max-width: 600px) {
+      .header h1 { font-size: 1.4rem; }
+      .card-header { flex-wrap: wrap; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🦾 AI Builders Digest</h1>
-            <p class="subtitle">Daily insights from top AI builders</p>
-            <div class="date">📅 March 28, 2026</div>
-        </div>
 
-        <div class="date-navigation">
-            <div class="nav-container">
-                <div class="nav-title">📅 Historical Archives</div>
-                <div class="nav-links">
-                    <a href="archive/2026-03-28.html" class="nav-link">2026-03-28</a>
-                </div>
-            </div>
-        </div>
+<div class="header">
+  <div class="header-badge">🤖 AI Builders Digest</div>
+  <h1>What's Building in AI Today</h1>
+  <div class="header-meta">April 1, 2026 &nbsp;·&nbsp; 1 podcast &nbsp;·&nbsp; 10 builders</div>
+</div>
 
-        <div class="content">
-            <div class="stats">
-                Today's updates: <strong>2 builders</strong> • <strong>4 tweets</strong> • <strong>0 podcasts</strong>
-            </div>
+<div class="nav-bar">
+  <span>Archive:</span>
+  <a href="archive/2026-03-28.html">Mar 28</a>
+  <a href="archive/2026-03-29.html">Mar 29</a>
+  <a href="index.html" class="current">Apr 1 (latest)</a>
+  <a href="archives.html">All →</a>
+</div>
 
-            <!-- Swyx -->
-            <div class="builder-section">
-                <div class="builder-name">Swyx</div>
-                <div class="builder-bio">AI Engineer and Developer Relations expert. Known for technical writing, community building, and deep dives into AI development practices. Affiliations include DX Tips, Cognition, Temporal, AI Dot Engineer, and Latent Space Podcast.</div>
-                
-                <div class="tweet">
-                    <a href="https://x.com/swyx/status/2037620876179537989" target="_blank" class="tweet-url">View Tweet →</a>
-                    <div class="tweet-text">Just learned about create-context-graph - one command and it sets up key entity relationships for 22 top industry domains. Been looking for something like this to "layer on" a social graph to every single app I make!</div>
-                    <div class="tweet-meta">
-                        <span class="tweet-likes">❤️ 382 likes</span>
-                        <span>🔄 27 retweets</span>
-                        <span>💬 29 replies</span>
-                    </div>
-                </div>
+<div class="container">
 
-                <div class="tweet">
-                    <a href="https://x.com/swyx/status/2037674926715605331" target="_blank" class="tweet-url">View Tweet →</a>
-                    <div class="tweet-text">Our "Veo Sailor" from the Veo 3 launch wants to remind you: "You can still make videos in Gemini" :)</div>
-                    <div class="tweet-meta">
-                        <span class="tweet-likes">❤️ 149 likes</span>
-                        <span>🔄 33 retweets</span>
-                    </div>
-                </div>
+  <!-- PODCAST SECTION -->
+  <div class="section-label">
+    <span class="icon">🎙️</span>
+    <h2>Podcast</h2>
+  </div>
 
-                <div class="chinese-section">
-                    <span class="chinese-label">中文翻译 Chinese Translation</span>
-                    
-                    <div class="tweet">
-                        <a href="https://x.com/swyx/status/2037620876179537989" target="_blank" class="tweet-url">查看推文 →</a>
-                        <div class="tweet-text">刚了解到 create-context-graph —— 一个命令就能为22个顶级行业领域建立关键实体关系。这正是我一直在寻找的工具，可以"叠加"社交图谱到我构建的每个应用上！</div>
-                        <div class="tweet-meta">
-                            <span class="tweet-likes">❤️ 382 点赞</span>
-                            <span>🔄 27 转推</span>
-                            <span>💬 29 回复</span>
-                        </div>
-                    </div>
-
-                    <div class="tweet">
-                        <a href="https://x.com/swyx/status/2037674926715605331" target="_blank" class="tweet-url">查看推文 →</a>
-                        <div class="tweet-text">我们 Veo 3 发布时的"Veo Sailor"角色想提醒你："你仍然可以在 Gemini 中制作视频" :)</div>
-                        <div class="tweet-meta">
-                            <span class="tweet-likes">❤️ 149 点赞</span>
-                            <span>🔄 33 转推</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Josh Woodward -->
-            <div class="builder-section">
-                <div class="builder-name">Josh Woodward</div>
-                <div class="builder-bio">VP at Google Labs, working on Google AI Studio and Gemini App. Focuses on making AI accessible and user-friendly through tools like Google AI Studio and the Gemini platform.</div>
-                
-                <div class="tweet">
-                    <a href="https://x.com/joshwoodward/status/2037674926715605331" target="_blank" class="tweet-url">View Tweet →</a>
-                    <div class="tweet-text">Our "Veo Sailor" from the Veo 3 launch wants to remind you: "You can still make videos in Gemini" :)</div>
-                    <div class="tweet-meta">
-                        <span class="tweet-likes">❤️ 149 likes</span>
-                        <span>🔄 33 retweets</span>
-                    </div>
-                </div>
-
-                <div class="chinese-section">
-                    <span class="chinese-label">中文翻译 Chinese Translation</span>
-                    
-                    <div class="tweet">
-                        <a href="https://x.com/joshwoodward/status/2037674926715605331" target="_blank" class="tweet-url">查看推文 →</a>
-                        <div class="tweet-text">我们 Veo 3 发布时的"Veo Sailor"角色想提醒你："你仍然可以在 Gemini 中制作视频" :)</div>
-                        <div class="tweet-meta">
-                            <span class="tweet-likes">❤️ 149 点赞</span>
-                            <span>🔄 33 转推</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Analysis Section -->
-            <div class="builder-section" style="border-left-color: #11998e;">
-                <div class="builder-name">🔍 今日趋势分析</div>
-                <div class="builder-bio">Today's insights from top AI builders</div>
-                
-                <div class="tweet">
-                    <div class="tweet-text">📊 <strong>主题热点：</strong>社交图谱和实体关系建模成为关注焦点。Swyx 发现的 create-context-graph 工具显示了开发者对结构化数据关系的强烈需求。</div>
-                </div>
-
-                <div class="tweet">
-                    <div class="tweet-text">🎬 <strong>AI 视频制作：</strong>Google 的 Veo 3 继续推进 AI 视频生成能力，通过"Veo Sailor"角色提醒用户 Gemini 平台的视频制作功能。</div>
-                </div>
-
-                <div class="tweet">
-                    <div class="tweet-text">🛠️ <strong>开发者工具：</strong>自动化工具的发现和分享成为 AI 开发者社区的重要趋势。Swyx 的发现过程体现了社区协作和知识分享的价值。</div>
-                </div>
-
-                <div class="chinese-section">
-                    <span class="chinese-label">中文翻译 Chinese Translation</span>
-                    
-                    <div class="tweet">
-                        <div class="tweet-text">📊 <strong>主题热点：</strong>社交图谱和实体关系建模成为关注焦点。Swyx 发现的 create-context-graph 工具显示了开发者对结构化数据关系的强烈需求。</div>
-                    </div>
-
-                    <div class="tweet">
-                        <div class="tweet-text">🎬 <strong>AI 视频制作：</strong>Google 的 Veo 3 继续推进 AI 视频生成能力，通过"Veo Sailor"角色提醒用户 Gemini 平台的视频制作功能。</div>
-                    </div>
-
-                    <div class="tweet">
-                        <div class="tweet-text">🛠️ <strong>开发者工具：</strong>自动化工具的发现和分享成为 AI 开发者社区的重要趋势。Swyx 的发现过程体现了社区协作和知识分享的价值。</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="footer">
-            <p><a href="archives.html">📚 View All Archives</a></p>
-            <p>Generated through Follow Builders skill</p>
-            <p><a href="https://github.com/zarazhangrui/follow-builders" target="_blank">github.com/zarazhangrui/follow-builders</a></p>
-            <p style="margin-top: 10px; font-size: 0.85em; opacity: 0.8;">Next digest: Tomorrow at 8:00 AM</p>
-        </div>
+  <div class="card podcast-card">
+    <div class="card-header">
+      <div class="avatar podcast-avatar">🎧</div>
+      <div class="builder-info">
+        <div class="builder-name">Data Driven NYC</div>
+        <div class="builder-role">Can One Person Build a Billion-Dollar Startup?</div>
+      </div>
+      <a href="https://youtube.com/watch?v=rX3CxlGm-00" target="_blank" class="source-link">▶ Watch</a>
     </div>
+    <div class="card-body">
+      <div class="en-block">
+        <span class="lang-tag lang-en">EN</span>
+        <p>Andrew from <strong>General Intelligence Company of New York</strong> laid out a bold thesis: AI agents will soon enable a single person to run a billion-dollar operation. The vision — a one-person company at the top, managing a layer of specialized AI agents (customer support, finance, marketing) coordinated by "manager agents." Their first product, <strong>Co-Founder</strong>, lets you run agents in a cloud computer with persistent memory and drafts emails that actually sound like you. Key insight: <em>agent coordination and the human-AI interface layer is where the real leverage lives.</em></p>
+      </div>
+      <div class="zh-block">
+        <span class="lang-tag lang-zh">中文</span>
+        <p>来自纽约 General Intelligence 公司的 Andrew 提出了一个大胆命题：AI agent 已基本可用，一个人运营十亿美元公司的时代即将到来。架构是这样的：顶层是一个人，下面是一层垂直 AI agent（客服、财务、营销），中间由"管理 agent"层协调调度。他们的首款产品 <strong>Co-Founder</strong> 在云端运行 agent、具备持久化记忆，甚至能模仿你的写作风格起草邮件。核心押注：<em>做管理层和人机交互界面，而不是做每一个底层 agent。</em></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- X / TWITTER SECTION -->
+  <div class="section-label">
+    <span class="icon">𝕏</span>
+    <h2>X / Twitter Builders</h2>
+  </div>
+
+  <!-- Kevin Weil -->
+  <div class="card">
+    <div class="card-header">
+      <div class="avatar">KW</div>
+      <div class="builder-info">
+        <div class="builder-name">Kevin Weil</div>
+        <div class="builder-role">VP of Science · OpenAI</div>
+      </div>
+      <a href="https://x.com/kevinweil/status/2039200605672284572" target="_blank" class="source-link">→ Tweet</a>
+    </div>
+    <div class="card-body">
+      <div class="en-block">
+        <span class="lang-tag lang-en">EN</span>
+        <p>AI isn't just solving harder problems — <strong>its proofs are becoming more elegant</strong> as models improve. A quiet but significant signal that model capabilities are deepening beyond what benchmark scores can capture.</p>
+      </div>
+      <div class="zh-block">
+        <span class="lang-tag lang-zh">中文</span>
+        <p>OpenAI 科学副总裁 Kevin Weil 指出：AI 不只是在解决更难的问题，随着模型能力提升，<strong>其数学证明也变得更加优雅</strong>。这是模型能力正在深化的微妙信号，不只是跑分数字的提升。</p>
+      </div>
+      <div class="stats-bar"><span class="stat">❤️ 116</span><span class="stat">🔁 7</span></div>
+    </div>
+  </div>
+
+  <!-- Aaron Levie -->
+  <div class="card">
+    <div class="card-header">
+      <div class="avatar">AL</div>
+      <div class="builder-info">
+        <div class="builder-name">Aaron Levie</div>
+        <div class="builder-role">CEO · Box</div>
+      </div>
+      <a href="https://x.com/levie/status/2039216522028257549" target="_blank" class="source-link">→ Tweet</a>
+    </div>
+    <div class="card-body">
+      <div class="en-block">
+        <span class="lang-tag lang-en">EN</span>
+        <p>On the limits of AI productivity gains: <strong>security, compliance, and governance will be the ultimate rate limiters</strong> for agents on critical business workflows. Everyone's excited about agents doing work — but who's responsible when things go wrong?</p>
+      </div>
+      <div class="zh-block">
+        <span class="lang-tag lang-zh">中文</span>
+        <p>Box CEO Aaron Levie 点出了 AI 生产力提升的深层瓶颈：在关键业务场景中，<strong>安全、合规和治理才是 agent 落地的终极限制因素</strong>。大家都在兴奋 agent 能干活，但出了问题谁负责？</p>
+      </div>
+      <div class="stats-bar"><span class="stat">❤️ 96</span><span class="stat">🔁 19</span></div>
+    </div>
+  </div>
+
+  <!-- Thariq -->
+  <div class="card">
+    <div class="card-header">
+      <div class="avatar">TH</div>
+      <div class="builder-info">
+        <div class="builder-name">Thariq</div>
+        <div class="builder-role">Claude Code · Anthropic</div>
+      </div>
+      <a href="https://x.com/trq212/status/2039201498996035924" target="_blank" class="source-link">→ Tweet</a>
+    </div>
+    <div class="card-body">
+      <div class="en-block">
+        <span class="lang-tag lang-en">EN</span>
+        <p>Thariq shared a <strong>Claude Code <code>/buddy</code> demo</strong> that exploded with 1,814 likes and 68 retweets — the hottest post in this batch by far. Claude Code just shipped something worth paying close attention to.</p>
+      </div>
+      <div class="zh-block">
+        <span class="lang-tag lang-zh">中文</span>
+        <p>Anthropic Claude Code 团队的 Thariq 分享了 <strong><code>/buddy</code> 功能演示</strong>，获得 1814 个点赞和 68 次转发，是本期最热帖子。Claude Code 又出新动作了，值得关注。</p>
+      </div>
+      <div class="stats-bar"><span class="stat stat-hot">🔥 1,814</span><span class="stat">🔁 68</span></div>
+    </div>
+  </div>
+
+  <!-- Peter Steinberger -->
+  <div class="card">
+    <div class="card-header">
+      <div class="avatar">PS</div>
+      <div class="builder-info">
+        <div class="builder-name">Peter Steinberger</div>
+        <div class="builder-role">OpenClaw</div>
+      </div>
+      <a href="https://x.com/steipete/status/2039156882041123035" target="_blank" class="source-link">→ Tweet</a>
+    </div>
+    <div class="card-body">
+      <div class="en-block">
+        <span class="lang-tag lang-en">EN</span>
+        <p>A pointed comment on AI-generated takedown requests: <em>"are they vibing the takedown requests too?"</em> — 300 likes, 14 RTs. The AI-generated legal noise problem is apparently real enough to broadly resonate.</p>
+      </div>
+      <div class="zh-block">
+        <span class="lang-tag lang-zh">中文</span>
+        <p>OpenClaw 的 Peter Steinberger 吐槽 AI 生成撤稿请求的现象，获 300 点赞。<em>"他们连撤稿请求也在 vibe 了吗？"</em> AI 生成法律噪音的问题显然已经真实到引发广泛共鸣。</p>
+      </div>
+      <div class="stats-bar"><span class="stat">❤️ 300</span><span class="stat">🔁 14</span></div>
+    </div>
+  </div>
+
+  <!-- Amjad Masad -->
+  <div class="card">
+    <div class="card-header">
+      <div class="avatar">AM</div>
+      <div class="builder-info">
+        <div class="builder-name">Amjad Masad</div>
+        <div class="builder-role">CEO · Replit</div>
+      </div>
+      <a href="https://x.com/amasad/status/2039194288777478259" target="_blank" class="source-link">→ Tweet</a>
+    </div>
+    <div class="card-body">
+      <div class="en-block">
+        <span class="lang-tag lang-en">EN</span>
+        <p><em>"New psyop just dropped"</em> — 259 likes, 29 RTs. Replit's CEO is clearly watching industry narrative wars closely. Something out there caught his attention today.</p>
+      </div>
+      <div class="zh-block">
+        <span class="lang-tag lang-zh">中文</span>
+        <p>Replit CEO Amjad Masad 发出<em>"新 psyop 又来了"</em>的推文，获 259 个点赞。他在密切关注行业中的叙事战争。今天有什么东西引起了他的注意。</p>
+      </div>
+      <div class="stats-bar"><span class="stat">❤️ 259</span><span class="stat">🔁 29</span></div>
+    </div>
+  </div>
+
+  <!-- Dan Shipper -->
+  <div class="card">
+    <div class="card-header">
+      <div class="avatar">DS</div>
+      <div class="builder-info">
+        <div class="builder-name">Dan Shipper</div>
+        <div class="builder-role">CEO · Every</div>
+      </div>
+      <a href="https://x.com/danshipper/status/2039149696166318320" target="_blank" class="source-link">→ Tweet</a>
+    </div>
+    <div class="card-body">
+      <div class="en-block">
+        <span class="lang-tag lang-en">EN</span>
+        <p>Recommending <strong>Proof</strong> — Every's new AI tool. If you're not already in the Every ecosystem for staying at the edge of AI, this might be a good entry point.</p>
+      </div>
+      <div class="zh-block">
+        <span class="lang-tag lang-zh">中文</span>
+        <p>Every CEO Dan Shipper 推荐了旗下新工具 <strong>Proof</strong>。如果你还没用过 Every 的产品，现在值得关注一下。</p>
+      </div>
+      <div class="stats-bar"><span class="stat">❤️ 56</span></div>
+    </div>
+  </div>
+
+  <!-- Nan Yu -->
+  <div class="card">
+    <div class="card-header">
+      <div class="avatar">NY</div>
+      <div class="builder-info">
+        <div class="builder-name">Nan Yu</div>
+        <div class="builder-role">Head of Product · Linear</div>
+      </div>
+      <a href="https://x.com/thenanyu/status/2039167941225111754" target="_blank" class="source-link">→ Tweet</a>
+    </div>
+    <div class="card-body">
+      <div class="en-block">
+        <span class="lang-tag lang-en">EN</span>
+        <p><em>"Everyone apologize to DHH"</em> — whatever DHH was right about, Linear's Head of Product is calling it. Pointed and landing with 38 likes.</p>
+      </div>
+      <div class="zh-block">
+        <span class="lang-tag lang-zh">中文</span>
+        <p>Linear 产品负责人 Nan Yu 发推<em>"大家都去向 DHH 道歉"</em>——不管 DHH 关于什么事情的判断已被验证，他都在宣告这件事。38 个点赞，话说得很冲，共鸣却很真实。</p>
+      </div>
+      <div class="stats-bar"><span class="stat">❤️ 38</span></div>
+    </div>
+  </div>
+
+  <!-- Aditya Agarwal -->
+  <div class="card">
+    <div class="card-header">
+      <div class="avatar">AA</div>
+      <div class="builder-info">
+        <div class="builder-name">Aditya Agarwal</div>
+        <div class="builder-role">General Partner · South Park Commons</div>
+      </div>
+      <a href="https://x.com/adityaag/status/2039198010681565665" target="_blank" class="source-link">→ Tweet</a>
+    </div>
+    <div class="card-body">
+      <div class="en-block">
+        <span class="lang-tag lang-en">EN</span>
+        <p>Reflecting on early Facebook's <em>"fix bugs in production"</em> culture — what sounded crazy then is now standard practice. A reminder that <strong>unconventional engineering culture often predates industry-wide shifts</strong>.</p>
+      </div>
+      <div class="zh-block">
+        <span class="lang-tag lang-zh">中文</span>
+        <p>South Park Commons 的 Aditya Agarwal 回顾早期 Facebook <em>"直接在生产环境修 bug"</em> 的文化——当时听起来离谱，如今已是行业常态。<strong>非常规的工程文化往往预示着行业级转变</strong>，这个规律值得记住。</p>
+      </div>
+      <div class="stats-bar"><span class="stat">❤️ 15</span></div>
+    </div>
+  </div>
+
+  <!-- Swyx -->
+  <div class="card">
+    <div class="card-header">
+      <div class="avatar">SW</div>
+      <div class="builder-info">
+        <div class="builder-name">Swyx</div>
+        <div class="builder-role">AI Engineer · Latent Space Pod</div>
+      </div>
+      <a href="https://x.com/swyx/status/2039222156815716437" target="_blank" class="source-link">→ Tweet</a>
+    </div>
+    <div class="card-body">
+      <div class="en-block">
+        <span class="lang-tag lang-en">EN</span>
+        <p>Noticing something off: <strong>Codex usage flatlined in March — zero growth.</strong> Worth watching whether this is a seasonal blip or something more structural about the coding AI market.</p>
+      </div>
+      <div class="zh-block">
+        <span class="lang-tag lang-zh">中文</span>
+        <p>AI 工程社区的 Swyx 发现了一个异常：<strong>Codex 在三月份增长完全停滞</strong>。这是季节性波动，还是编程 AI 市场出现了更深层的结构性变化？值得持续关注。</p>
+      </div>
+      <div class="stats-bar"><span class="stat">❤️ 6</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Generated by the <a href="https://github.com/zarazhangrui/follow-builders" target="_blank">Follow Builders</a> skill &nbsp;·&nbsp; April 1, 2026 &nbsp;·&nbsp;
+  <a href="archives.html">View all archives →</a>
+</div>
+
 </body>
 </html>
